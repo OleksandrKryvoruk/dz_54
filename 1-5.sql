@@ -1,19 +1,19 @@
 """1"""
-SELECT * FROM pds.employees order by LAST_NAME;
+select count(JOB_ID) from pds.employees;
 
 """2"""
-SELECT FIRST_NAME, LAST_NAME,  SALARY, (SALARY * 0.15) AS TAX
-FROM pds.employees
-order by LAST_NAME;
+SELECT AVG(SALARY) as AVG_SALARY, count(EMPLOYEE_ID) as NUM_STUFF_90 from pds.employees
+where DEPARTMENT_ID = 90;
 
 """3"""
-SELECT SUM(SALARY)
-FROM pds.employees;
+SELECT JOB_ID, count(JOB_ID) from pds.employees
+group by JOB_ID;
 
 """4"""
-SELECT MAX(SALARY), MIN(SALARY)
-FROM pds.employees;
+SELECT * from pds.employees right join pds.departments
+on pds.employees.DEPARTMENT_ID = pds.departments.DEPARTMENT_ID;
 
 """5"""
-SELECT AVG(SALARY), count(EMPLOYEE_ID)
-FROM pds.employees;
+SELECT * from pds.employees left join pds.departments
+on pds.employees.DEPARTMENT_ID = pds.departments.DEPARTMENT_ID
+where LOCATION_ID = 2400;
